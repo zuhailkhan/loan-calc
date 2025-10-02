@@ -6,10 +6,10 @@ import { useAuth } from '../hooks/useAuth';
 import { useToast } from '../hooks/useToast';
 import ConfigurationPanel from './ConfigurationPanel';
 import TableView from './TableView';
-import { Loader2, WifiOff, Save } from 'lucide-react';
+import { Loader2, WifiOff, Save, LogOut } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const { showToast } = useToast();
   
   // Data persistence hook with optimistic updates
@@ -125,7 +125,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 animate-fade-in">
+    <div className="animate-fade-in">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -159,6 +159,15 @@ const Dashboard: React.FC = () => {
                     <span>Offline</span>
                   </div>
                 )}
+                {/* Logout button */}
+                <button
+                  onClick={() => void signOut()}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-colors"
+                  title="Logout"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Logout</span>
+                </button>
               </div>
             </div>
           </div>
@@ -167,14 +176,16 @@ const Dashboard: React.FC = () => {
 
       {/* Main Content - Split Screen Layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)]">
-          {/* Configuration Panel - Left Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Configuration Panel - Left Side (Sticky) */}
           <div className="lg:col-span-1">
-            <ConfigurationPanel
-              config={config}
-              onConfigChange={handleConfigChange}
-              onReset={handleReset}
-            />
+            <div className="sticky top-6">
+              <ConfigurationPanel
+                config={config}
+                onConfigChange={handleConfigChange}
+                onReset={handleReset}
+              />
+            </div>
           </div>
 
           {/* Table View - Right Side */}

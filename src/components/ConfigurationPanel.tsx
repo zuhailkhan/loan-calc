@@ -82,7 +82,7 @@ const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 h-full overflow-y-auto">
+    <div className="bg-white rounded-lg shadow-lg p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Loan Configuration</h2>
       
       {/* Loan Parameters */}
