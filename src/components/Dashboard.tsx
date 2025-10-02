@@ -3,7 +3,7 @@ import type { LoanConfig } from '../types/loan';
 import { useLoanCalculation } from '../hooks/useLoanCalculation';
 import { useDataPersistence } from '../hooks/useDataPersistence';
 import { useAuth } from '../hooks/useAuth';
-import { useToast } from './ToastContainer';
+import { useToast } from '../hooks/useToast';
 import ConfigurationPanel from './ConfigurationPanel';
 import TableView from './TableView';
 import { Loader2, WifiOff, Save } from 'lucide-react';
@@ -115,16 +115,17 @@ const Dashboard: React.FC = () => {
   if (loading || !config) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
+        <div className="text-center animate-fade-in">
           <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600">Loading your configuration...</p>
+          <p className="text-gray-600 font-medium">Loading your configuration...</p>
+          <p className="text-sm text-gray-500 mt-2">Setting up your loan calculator</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 animate-fade-in">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

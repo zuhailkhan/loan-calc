@@ -10,7 +10,9 @@ function App() {
       <AuthProvider>
         <ToastProvider>
           <ProtectedRoute>
-            <Dashboard />
+            <div className="animate-fade-in">
+              <Dashboard />
+            </div>
           </ProtectedRoute>
         </ToastProvider>
       </AuthProvider>
