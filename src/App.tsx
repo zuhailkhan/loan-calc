@@ -1,14 +1,20 @@
 import { AuthProvider } from './contexts/AuthContext';
+import { ToastProvider } from './components/ToastContainer';
+import ErrorBoundary from './components/ErrorBoundary';
 import ProtectedRoute from './components/ProtectedRoute';
-import LoanRepaymentCalculator from './loan_repayment_calculator';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
-    <AuthProvider>
-      <ProtectedRoute>
-        <LoanRepaymentCalculator />
-      </ProtectedRoute>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ToastProvider>
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        </ToastProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

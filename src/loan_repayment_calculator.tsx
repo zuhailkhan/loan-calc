@@ -9,8 +9,8 @@ const LoanRepaymentCalculator = () => {
   const defaultPrepayment = 41000;
   const prepaymentFeeRate = 3.5 / 100;
 
-  const [prepayments, setPrepayments] = useState(() => {
-    const initial = {};
+  const [prepayments, setPrepayments] = useState<Record<number, number>>(() => {
+    const initial: Record<number, number> = {};
     for (let i = 1; i <= months; i++) {
       initial[i] = defaultPrepayment;
     }
@@ -68,24 +68,24 @@ const LoanRepaymentCalculator = () => {
     }
 
     return { data, totalInterest, totalPrincipal, totalPrepayment, totalPrepaymentFees };
-  }, [prepayments]);
+  }, [prepayments, monthlyRate, prepaymentFeeRate]);
 
-  const handlePrepaymentChange = (month, value) => {
+  const handlePrepaymentChange = (month: number, value: string) => {
     setPrepayments(prev => ({
       ...prev,
       [month]: value === '' ? 0 : parseFloat(value) || 0
     }));
   };
 
-  const setAllPrepayments = (value) => {
-    const newPrepayments = {};
+  const setAllPrepayments = (value: number) => {
+    const newPrepayments: Record<number, number> = {};
     for (let i = 1; i <= months; i++) {
       newPrepayments[i] = value;
     }
     setPrepayments(newPrepayments);
   };
 
-  const formatCurrency = (amount) => {
+  const formatCurrency = (amount: number) => {
     return '₹' + amount.toLocaleString('en-IN', { maximumFractionDigits: 0 });
   };
 
@@ -229,7 +229,7 @@ const LoanRepaymentCalculator = () => {
             </tbody>
             <tfoot className="bg-gradient-to-r from-gray-700 to-gray-800 text-white font-bold">
               <tr>
-                <td colSpan="2" className="px-4 py-3">TOTAL</td>
+                <td colSpan={2} className="px-4 py-3">TOTAL</td>
                 <td className="px-4 py-3 text-right">{formatCurrency(schedule.data.reduce((sum, row) => sum + row.emi, 0))}</td>
                 <td className="px-4 py-3 text-right">{formatCurrency(schedule.totalInterest)}</td>
                 <td className="px-4 py-3 text-right">{formatCurrency(schedule.totalPrincipal)}</td>

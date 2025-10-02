@@ -1,15 +1,104 @@
-# React + TypeScript + Vite
+# Loan Repayment Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application for calculating and visualizing loan repayment schedules with prepayment options, built with React, TypeScript, and Firebase.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **User Authentication** - Secure sign-up and login with Firebase Auth
+- 💾 **Cloud Storage** - Save and sync loan configurations across devices
+- 📊 **Interactive Calculator** - Real-time loan schedule calculations
+- 💰 **Prepayment Modeling** - Visualize impact of prepayments on loan tenure
+- 📈 **Split-Screen Interface** - Configuration panel and table view
+- 📤 **CSV Export** - Download repayment schedules
+- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** with TypeScript
+- **Firebase** (Authentication, Firestore, Hosting)
+- **Vite** with rolldown for fast builds
+- **Tailwind CSS** for styling
+- **Lucide React** for icons
+
+## Getting Started
+
+### Prerequisites
+
+- [Bun](https://bun.sh/) package manager
+- Firebase project (already configured)
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   bun install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your Firebase configuration
+   ```
+
+### Development
+
+Start the development server:
+```bash
+bun dev
+```
+
+The app will be available at `http://localhost:5173`
+
+### Building for Production
+
+Build the optimized production bundle:
+```bash
+bun run build:prod
+```
+
+Preview the production build locally:
+```bash
+bun run preview
+```
+
+## Deployment
+
+The application is deployed to Firebase Hosting. See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
+
+### Quick Deploy
+
+```bash
+bun run deploy
+```
+
+This will build and deploy the application to Firebase Hosting.
+
+## Project Structure
+
+```
+loan-calc/
+├── src/
+│   ├── components/      # React components
+│   ├── contexts/        # React contexts (Auth)
+│   ├── hooks/           # Custom React hooks
+│   ├── services/        # Firebase services
+│   ├── types/           # TypeScript type definitions
+│   └── utils/           # Utility functions
+├── .kiro/               # Kiro specs and configuration
+├── dist/                # Production build output
+└── public/              # Static assets
+```
+
+## Available Scripts
+
+- `bun dev` - Start development server
+- `bun run build` - Build for production
+- `bun run build:prod` - Build with production environment
+- `bun run preview` - Preview production build
+- `bun run lint` - Run ESLint
+- `bun run deploy` - Deploy to Firebase Hosting
+- `bun run deploy:full` - Deploy hosting and Firestore rules
 
 ## Expanding the ESLint configuration
 
