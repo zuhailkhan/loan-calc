@@ -28,14 +28,14 @@ export interface LoanScheduleData {
 }
 
 export const DEFAULT_LOAN_CONFIG: Omit<LoanConfig, 'prepayments'> = {
-  principal: 3500000,
+  principal: 10000000,
   annualRate: 10.5,
-  months: 84,
-  emi: 59018,
+  months: 120,
+  emi: 135000,
   prepaymentFeeRate: 3.5,
 };
 
-export const DEFAULT_PREPAYMENT_AMOUNT = 41000;
+export const DEFAULT_PREPAYMENT_AMOUNT = 50000;
 
 // Firestore document structure
 export interface UserConfigDocument {
