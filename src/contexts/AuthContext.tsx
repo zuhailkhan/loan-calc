@@ -7,6 +7,7 @@ interface AuthContextType {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -47,6 +48,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    try {
+      await authService.signInWithGoogle();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const signOut = async () => {
     setLoading(true);
     try {
@@ -61,6 +71,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loading,
     signIn,
     signUp,
+    signInWithGoogle,
     signOut,
   }), [user, loading]);
 

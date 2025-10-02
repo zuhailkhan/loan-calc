@@ -3,7 +3,9 @@ import {
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
   signOut as firebaseSignOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
 } from 'firebase/auth';
 import type { User } from 'firebase/auth';
 import { 
@@ -59,6 +61,11 @@ export const authService = {
   
   signUp: (email: string, password: string) => 
     createUserWithEmailAndPassword(auth, email, password),
+  
+  signInWithGoogle: async () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  },
   
   signOut: () => firebaseSignOut(auth),
   
