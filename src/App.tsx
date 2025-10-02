@@ -1,12 +1,15 @@
-import LoanRepaymentCalculator from './loan_repayment_calculator'
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import LoanRepaymentCalculator from './loan_repayment_calculator';
 
 function App() {
-
   return (
-    <div>
-      <LoanRepaymentCalculator/>
-    </div>
-  )
+    <AuthProvider>
+      <ProtectedRoute>
+        <LoanRepaymentCalculator />
+      </ProtectedRoute>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
