@@ -89,17 +89,20 @@ const Dashboard: React.FC = () => {
 
   // Reset to default configuration with save
   const handleReset = useCallback(() => {
-    if (!persistedConfig) return;
-    
     const defaultPrepayments: Record<number, number> = {};
-    const defaultPrepayment = 41000;
+    const defaultPrepayment = 50000;
+    const defaultMonths = 120;
     
-    for (let i = 1; i <= persistedConfig.months; i++) {
+    for (let i = 1; i <= defaultMonths; i++) {
       defaultPrepayments[i] = defaultPrepayment;
     }
     
-    const resetConfig = {
-      ...persistedConfig,
+    const resetConfig: LoanConfig = {
+      principal: 10000000,
+      annualRate: 10.5,
+      months: defaultMonths,
+      emi: 135000,
+      prepaymentFeeRate: 3.5,
       prepayments: defaultPrepayments
     };
     
@@ -107,7 +110,7 @@ const Dashboard: React.FC = () => {
     saveConfig(resetConfig); // Save reset config to Firestore
     clearError(); // Clear any previous errors
     showToast('Configuration reset to defaults', 'success');
-  }, [persistedConfig, saveConfig, clearError, showToast]);
+  }, [saveConfig, clearError, showToast]);
 
 
 

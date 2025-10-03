@@ -209,10 +209,10 @@ const ConfigurationPanel: React.FC<ConfigurationPanelProps> = ({
 
           <div className="flex gap-3">
             <button
-              onClick={() => handlePrepaymentChange('41000')}
+              onClick={() => handlePrepaymentChange('50000')}
               className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
             >
-              Set to ₹41,000
+              Set to ₹50,000
             </button>
             <button
               onClick={clearAllPrepayments}
